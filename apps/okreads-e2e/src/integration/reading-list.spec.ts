@@ -15,7 +15,7 @@ describe('When: I use the reading list feature', () => {
   it('Then: I should mark book as finished in reading list, I should see "Want to Read" text changed to "Finished" after i marked book as finished in search results, I should be able to delete finished book in reading list and Removing a book will reset the finished status', () => {
     cy.get('input[type="search"]').type('javascript');
 
-    cy.get('form').submit();
+    cy.get('#searchBook').submit();
 
     cy.get('[data-testing="book-item"]')
       .find('.book--content--info button')
@@ -30,16 +30,17 @@ describe('When: I use the reading list feature', () => {
       'My Reading List'
     );
 
-    cy.get('[data-testing="marked-as-finish-reading-button"]').click();
+    cy.get('[data-testing="mark-to-finish-reading-button"]').click();
 
-    cy.get('[data-testing="finished-reading-details"]').contains(
+    cy.get('[data-testing="finished-reading-details"]').should(
+      'contain.text',
       'Finished reading'
     );
 
     cy.get('[data-testing="book-item"]')
       .find('.book--content--info button')
       .eq(0)
-      .contains('Finished');
+      .should('contain.text', 'Finished');
 
     cy.get('.reading-list-content')
       .find('.reading-list-item .mat-button-wrapper')
@@ -50,6 +51,6 @@ describe('When: I use the reading list feature', () => {
       .find('.book--content--info button')
       .not('[disabled]')
       .eq(0)
-      .contains('Want to Read');
+      .should('contain.text', 'Want to Read');
   });
 });
