@@ -30,11 +30,11 @@ describe('When: I use the reading list feature', () => {
 
     cy.get('.mat-snack-bar-container')
       .find('.mat-simple-snackbar')
-      .contains('added');
+      .should('contain.text', 'added');
 
     cy.get('.mat-snack-bar-container')
       .get('.mat-simple-snackbar-action > .mat-focus-indicator')
-      .contains('Undo');
+      .should('contain.text', 'Undo');
   });
 
   it('Then: After adding book to reading list when I click on remove button then should able to see snackbar with Undo action', () => {
@@ -61,7 +61,7 @@ describe('When: I use the reading list feature', () => {
     );
     cy.get('.mat-snack-bar-container')
       .get('.mat-simple-snackbar-action > .mat-focus-indicator')
-      .contains('Undo');
+      .should('contain.text', 'Undo');
   });
 
   it('Then: I should be able perform undo action on snackbar after adding book to reading list', () => {
