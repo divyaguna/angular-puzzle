@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './book-search.component.html',
   styleUrls: ['./book-search.component.scss'],
 })
-export class BookSearchComponent implements OnInit {
+export class BookSearchComponent implements OnInit, OnDestroy {
   books$ = this.store.pipe(select(getAllBooks));
   /*
     Creating a suscription for Instant Search value Changes
